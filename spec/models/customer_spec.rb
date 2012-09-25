@@ -36,4 +36,16 @@ describe Customer do
       end
     end
   end
+
+  describe 'the #age method' do
+    context "when birthday is available" do
+      before { subject.birthday = '1976-12-08' }
+      its(:age) { should == 35 }
+    end
+
+    context "when birthday is not available" do
+      before { subject.birthday = nil }
+      its(:age) { should be_nil }
+    end
+  end
 end

@@ -11,4 +11,11 @@ class Customer < ActiveRecord::Base
       ""
     end
   end
+
+  def age
+    return nil unless birthday.present?
+
+    now = Time.now.utc.to_date
+    now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+  end
 end
