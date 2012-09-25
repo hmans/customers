@@ -3,7 +3,17 @@ require 'spec_helper'
 describe Customer do
   subject { normal_customer }
   let(:blank_customer) { Customer.new }
-  let(:normal_customer) { Customer.new(:first_name => "Manfred", :last_name => "Mustermann", :email => "manfred@mustermann.de") }
+
+  let(:normal_customer) do
+    Customer.new(
+      :first_name => first_name, :last_name => last_name,
+      :email => email, :birthday => birthday)
+  end
+
+  let(:birthday)   { nil }
+  let(:first_name) { "Manfred" }
+  let(:last_name)  { "Mustermann" }
+  let(:email)      { "manfred@mustermann.de" }
 
   context "when the customer has no first_name and last_name" do
     subject { blank_customer }
@@ -25,7 +35,7 @@ describe Customer do
     end
 
     context 'when only first_name is missing' do
-      before  { subject.first_name = nil }
+      let(:first_name) { nil }
       it { should_not be_valid }
     end
 
@@ -39,12 +49,12 @@ describe Customer do
 
   describe 'the #age method' do
     context "when birthday is available" do
-      before { subject.birthday = '1976-12-08' }
-      its(:age) { should == 35 }
+      let(:birthday) { (32 * 12 + 4).months.ago }
+      its(:age) { should == 32 }
     end
 
     context "when birthday is not available" do
-      before { subject.birthday = nil }
+      let(:birthday) { nil }
       its(:age) { should be_nil }
     end
   end
