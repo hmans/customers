@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Creating a customer" do
+describe "Creating a customer", :js => true do
   it "should successfully create a customer" do
     # remember the customer count for later
     count = Customer.count
