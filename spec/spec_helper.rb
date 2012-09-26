@@ -10,6 +10,10 @@ require 'capybara/rspec'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+def row_for_customer(customer)
+  all('tr').find { |row| row.has_content?(customer.email) }
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

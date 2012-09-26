@@ -38,17 +38,8 @@ describe "Updating a customer" do
     # head to the customers index page
     visit '/customers'
 
-    # all('tr').each do |row|
-    #   if row.has_content?(customer.email)
-    #     within(row) do
-    #       click_link "Edit"
-    #     end
-    #   end
-    # end
-
     # find the correct 'edit' link
-    row = all('tr').find { |row| row.has_content?(customer.email) }
-    within row do
+    within row_for_customer(customer) do
       click_link "Edit"
     end
 
