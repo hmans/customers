@@ -20,8 +20,8 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
-  # gem 'factory_girl_rails'
-  # gem 'ffaker'
+  gem 'factory_girl_rails', '= 4.1.0'
+  gem 'ffaker'
 end
 
 gem 'jquery-rails'
