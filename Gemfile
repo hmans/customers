@@ -24,6 +24,7 @@ group :test, :development do
   gem 'ffaker'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 gem 'jquery-rails'
