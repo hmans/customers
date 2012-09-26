@@ -22,6 +22,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails', '= 4.1.0'
   gem 'ffaker'
+  gem 'capybara'
 end
 
 gem 'jquery-rails'
