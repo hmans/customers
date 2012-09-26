@@ -14,6 +14,10 @@ def row_for_customer(customer)
   all('tr').find { |row| row.has_content?(customer.email) }
 end
 
+def create_some_customers(num = 10)
+  num.times { FactoryGirl.create(:customer) }
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

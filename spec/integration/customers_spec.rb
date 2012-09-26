@@ -29,8 +29,7 @@ end
 
 describe "Updating a customer" do
   it "should modify the customer in the database" do
-    # create some customers
-    10.times { FactoryGirl.create(:customer) }
+    create_some_customers
 
     # pick a random customer
     customer = Customer.all.shuffle.first
