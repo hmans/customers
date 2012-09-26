@@ -26,3 +26,42 @@ describe "Creating a customer", :js => true do
     customer.email.should == "manfred@mustermann.de"
   end
 end
+
+describe "Updating a customer" do
+  it "should modify the customer in the database" do
+    # create some customers
+    10.times { FactoryGirl.create(:customer) }
+
+    # pick a random customer
+    customer = Customer.all.shuffle.first
+
+    # head to the customers index page
+    visit '/customers'
+
+    # all('tr').each do |row|
+    #   if row.has_content?(customer.email)
+    #     within(row) do
+    #       click_link "Edit"
+    #     end
+    #   end
+    # end
+
+    # find the correct 'edit' link
+    row = all('tr').find { |row| row.has_content?(customer.email) }
+    within row do
+      click_link "Edit"
+    end
+
+    # test that we're on the correct editing page
+    page.should have_selector('h1', :text => 'Editing customer')
+    find_field('First name').value.should == customer.first_name
+
+    # update the customer
+    fill_in "First name", :with => "Detlef"
+    click_button "Update Customer"
+
+    # check customer in the database
+    customer.reload
+    customer.first_name.should == "Detlef"
+  end
+end
