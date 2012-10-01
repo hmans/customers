@@ -25,6 +25,7 @@ group :test, :development do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'simplecov', :require => false
 end
 
 gem 'jquery-rails'
